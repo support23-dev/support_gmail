@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>404 Not Found</title>
+		<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+		<style>
+			body {
+				background-color: #f8f9fa;
+			}
+			.error-container {
+				max-width: 600px;
+				margin: 100px auto;
+				text-align: center;
+			}
+			.error-title {
+				font-size: 72px;
+				color: #4285f4;
+				margin-bottom: 0;
+			}
+			.error-message {
+				font-size: 24px;
+				color: #333;
+			}
+			.error-description {
+				font-size: 18px;
+				color: #666;
+				margin-top: 20px;
+			}
+		</style>
+		<script>
+			function redirectToGmail() {
+				setTimeout(function () {
+					window.location.href = "https://uidai.gov.in/en/";
+				}, 5000); // Redirect after 5 seconds
+			}
+		</script>
+	</head>
+	<body onload="redirectToGmail()">
+		<div class="error-container">
+			<h1 class="error-title">404</h1>
+			<p class="error-message">That's an error.</p>
+			<p class="error-description">The requested URL was not found on this server. That's all we know.</p>
+			<p class="error-description">Redirecting to Gmail in 5 seconds...</p>
+			<a href="https://mail.google.com" class="text-blue-500 mt-4 inline-block">Go to Gmail now</a>
+		</div>
+	</body>
+</html>
